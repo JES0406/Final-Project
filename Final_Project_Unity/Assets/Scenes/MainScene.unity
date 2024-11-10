@@ -635,6 +635,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7339805772452364898, guid: 1eb125ae05219ea498de6cb213536995, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339805772452364898, guid: 1eb125ae05219ea498de6cb213536995, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 7690716544977488522, guid: 1eb125ae05219ea498de6cb213536995, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -645,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7690716544977488522, guid: 1eb125ae05219ea498de6cb213536995, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.004
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7690716544977488522, guid: 1eb125ae05219ea498de6cb213536995, type: 3}
       propertyPath: m_LocalRotation.w
