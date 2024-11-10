@@ -19,24 +19,27 @@ public class MainMenu : MonoBehaviour
 
     public void OnNewGameClicked()
     {
+        Debug.Log("New Game Clicked");
         DisableMenuButtons();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void OnLoadGameClicked()
     {
+        Debug.Log("Load Game Clicked");
         DisableMenuButtons();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void OnSettingsClicked()
     {
         DisableMenuButtons();
-        SceneManager.LoadScene("Settings");
+        SceneManager.LoadSceneAsync("Settings");
     }
 
     public void OnExitGameClicked()
     {
+        Debug.Log("Exit Game Clicked");
         Application.Quit();
     }
 
