@@ -32,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
         moveAction = inputActions.FindActionMap(inputMapName).FindAction(move);
         jumpAction = inputActions.FindActionMap(inputMapName).FindAction(jump);
         RegisterInputActions();
+        Debug.Log("PlayerInputHandler Awake: " + instance);
     }
 
         void RegisterInputActions()

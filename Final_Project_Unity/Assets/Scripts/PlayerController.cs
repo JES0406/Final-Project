@@ -22,7 +22,17 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        inputHandler = PlayerInputHandler.instance; 
+        Debug.Log("Awake");
+        inputHandler = PlayerInputHandler.instance;
+        if (inputHandler == null)
+        {
+            Debug.LogError("inputHandler is not assigned.");
+            return;
+        }
+        else
+        {
+            Debug.Log("RB is assigned.");
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDirection = new Vector3(inputHandler.moveInput.x, 0, inputHandler.moveInput.y);
         inputDirection.Normalize();
+
 
         RB.velocity = new Vector3(inputDirection.x * speed, RB.velocity.y, inputDirection.z * speed);
         if (inputDirection != Vector3.zero)
