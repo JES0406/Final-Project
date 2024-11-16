@@ -84,4 +84,5 @@ public class PlayerController : MonoBehaviour
             RB.velocity += new Vector3(0, jumpForce, 0);
         }
     }
+
 }
