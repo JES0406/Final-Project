@@ -13,6 +13,8 @@ public class PlayerScript_Marcos : MonoBehaviour
     public float gravity = 9.86f;
     public FlipperScript spriteFlipper;
     public float facingDirection = -1;
+    public float floorHeight = 0.0f;
+    public Vector3 initialPosition;
 
     private PlayerInputHandler inputHandler;
 
@@ -20,6 +22,7 @@ public class PlayerScript_Marcos : MonoBehaviour
     void Start()
     {
         inputHandler = PlayerInputHandler.instance;
+        initialPosition = transform.position;
     }
 
     private void Awake()
@@ -29,7 +32,7 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void HandleMovement()
     {
-        isGrounded = transform.position.y <= 0;
+        isGrounded = transform.position.y <= floorHeight;
         if (!isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -45,9 +48,9 @@ public class PlayerScript_Marcos : MonoBehaviour
             + Vector3.up*verticalVelocity) * Time.deltaTime;
 
 
-        if (transform.position.y <= 0)
+        if (transform.position.y <= floorHeight)
         {
-            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, floorHeight, transform.position.z);
             isGrounded = true;
         }
         else { isGrounded = false; }
@@ -77,5 +80,10 @@ public class PlayerScript_Marcos : MonoBehaviour
     void Update()
     {
         HandleMovement();
+    }
+
+    public void resetPosition()
+    {
+        transform.position = initialPosition;
     }
 }
