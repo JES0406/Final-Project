@@ -86,4 +86,8 @@ public class PlayerScript_Marcos : MonoBehaviour
     {
         transform.position = initialPosition;
     }
+    public void SetInitialPosition(float x, float y, float z)
+    {
+        initialPosition = new Vector3(x, y, z);
+    }
 }
