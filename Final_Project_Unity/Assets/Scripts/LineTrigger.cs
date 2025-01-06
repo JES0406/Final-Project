@@ -10,7 +10,7 @@ public class LineTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Use GameManager to toggle the external boolean
-            GameManager.Instance.ResetStage();
+            GameManager.Instance.LevelUp();
         }
     }
 }
