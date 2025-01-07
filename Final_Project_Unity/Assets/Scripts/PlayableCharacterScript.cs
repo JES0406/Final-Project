@@ -6,17 +6,21 @@ using UnityEngine.EventSystems;
 public class PlayerScript_Marcos : MonoBehaviour
 {
 
-    public float movementSpeed = 4f;
-    public float jumpForce = 5f;
-    public bool isGrounded = false;
-    public float verticalVelocity = 0.0f;
-    public float gravity = 9.86f;
-    public FlipperScript spriteFlipper;
-    public float facingDirection = -1;
-    public float floorHeight = 0.0f;
-    public Vector3 initialPosition;
+    [SerializeField] float movementSpeed = 4f;
+    [SerializeField] float jumpForce = 5f;
+    [SerializeField] bool isGrounded = false;
+    [SerializeField] float verticalVelocity = 0.0f;
+    [SerializeField] float gravity = 9.86f;
+    [SerializeField] FlipperScript spriteFlipper;
+    [SerializeField] float facingDirection = -1;
+    [SerializeField] float floorHeight = 0.0f;
+    [SerializeField] Vector3 initialPosition;
+
+    [SerializeField] GameObject dustParticles;
+    [SerializeField] GameObject dustSpawnPosition;
 
     private PlayerInputHandler inputHandler;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,12 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void HandleMovement()
     {
+        bool oldIsGrounded = isGrounded;
         isGrounded = transform.position.y <= floorHeight;
+        if (isGrounded != oldIsGrounded)
+        {
+            PlayDustParticles();
+        }
         if (!isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -76,6 +85,12 @@ public class PlayerScript_Marcos : MonoBehaviour
         }
 
     }
+
+    void PlayDustParticles()
+    {
+        Instantiate(dustParticles, dustSpawnPosition.transform);
+    }
+
     // Update is called once per frame
     void Update()
     {
