@@ -12,8 +12,6 @@ public class PlayerScript_Marcos : MonoBehaviour
     public float verticalVelocity = 0.0f;
     public float gravity = 9.86f;
     public FlipperScript spriteFlipper;
-    public GameObject dustParticleSystem;
-    public GameObject dustSpawnPosition;
     public float facingDirection = -1;
     public float floorHeight = 0.0f;
     public Vector3 initialPosition;
@@ -34,16 +32,7 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void HandleMovement()
     {
-        bool newIsGrounded = transform.position.y <= 0;
-        if (newIsGrounded != isGrounded)
-        {
-            Debug.Log("Particles");
-            Instantiate(dustParticleSystem, dustSpawnPosition.transform);
-
-        }
-        isGrounded = newIsGrounded;
-
-
+        isGrounded = transform.position.y <= 0;
         if (!isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -65,11 +54,18 @@ public class PlayerScript_Marcos : MonoBehaviour
             transform.position = new Vector3(transform.position.x, floorHeight, transform.position.z);
 =======
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+<<<<<<< HEAD
+>>>>>>> parent of 95e2849 (dust particles)
+=======
 >>>>>>> parent of 95e2849 (dust particles)
             isGrounded = true;
         }
         else { isGrounded = false; }
 
+<<<<<<< HEAD
+=======
+        // flipping the player (hope it works)
+>>>>>>> parent of 95e2849 (dust particles)
         if (inputDirection.x != 0)
         {
 
@@ -81,6 +77,10 @@ public class PlayerScript_Marcos : MonoBehaviour
         }
 
         // tilting the sprite when the creature walks
+<<<<<<< HEAD
+=======
+        if (Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
+>>>>>>> parent of 95e2849 (dust particles)
         {
             spriteFlipper.Tilt();
         }
