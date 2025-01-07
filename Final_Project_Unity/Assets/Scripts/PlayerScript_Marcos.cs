@@ -15,6 +15,8 @@ public class PlayerScript_Marcos : MonoBehaviour
     public GameObject dustParticleSystem;
     public GameObject dustSpawnPosition;
     public float facingDirection = -1;
+    public float floorHeight = 0.0f;
+    public Vector3 initialPosition;
 
     private PlayerInputHandler inputHandler;
 
@@ -22,6 +24,7 @@ public class PlayerScript_Marcos : MonoBehaviour
     void Start()
     {
         inputHandler = PlayerInputHandler.instance;
+        initialPosition = transform.position;
     }
 
     private void Awake()
@@ -56,9 +59,10 @@ public class PlayerScript_Marcos : MonoBehaviour
             + Vector3.up*verticalVelocity) * Time.deltaTime;
 
 
-        if (transform.position.y <= 0)
+        if (transform.position.y <= floorHeight)
         {
-            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, floorHeight, transform.position.z);
+            isGrounded = true;
         }
 
         // flipping the player
@@ -86,5 +90,14 @@ public class PlayerScript_Marcos : MonoBehaviour
     void Update()
     {
         HandleMovement();
+    }
+
+    public void resetPosition()
+    {
+        transform.position = initialPosition;
+    }
+    public void SetInitialPosition(float x, float y, float z)
+    {
+        initialPosition = new Vector3(x, y, z);
     }
 }
