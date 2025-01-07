@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton instance
     [SerializeField] private AnimationManager animationManager;
+    [SerializeField] private EnemyFactory enemyFactory;
     [SerializeField] private PlayerScript_Marcos playerScript;
     [SerializeField] private float waitTime = 2.0f;
     [SerializeField] private int level = 1;
