@@ -61,15 +61,11 @@ public class PlayerScript_Marcos : MonoBehaviour
 
         if (transform.position.y <= floorHeight)
         {
-<<<<<<< HEAD
             transform.position = new Vector3(transform.position.x, floorHeight, transform.position.z);
-=======
-            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
->>>>>>> parent of 95e2849 (dust particles)
             isGrounded = true;
         }
-        else { isGrounded = false; }
 
+        // flipping the player
         if (inputDirection.x != 0)
         {
 
@@ -81,6 +77,7 @@ public class PlayerScript_Marcos : MonoBehaviour
         }
 
         // tilting the sprite when the creature walks
+        if (isGrounded && Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
         {
             spriteFlipper.Tilt();
         }
