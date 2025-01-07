@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class LineTrigger : MonoBehaviour
 {
+    [SerializeField] private int currentLevel = 1;
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the trigger is the player
+        // Debug.Log(other.tag);
         if (other.CompareTag("Player"))
         {
-            // Use GameManager to toggle the external boolean
-            GameManager.Instance.LevelUp();
+
+            // Debug.Log($"{GameManager.Instance.GetCurrentLevel()} - {currentLevel}");
+            if (GameManager.Instance.GetCurrentLevel() == currentLevel)
+            {
+                // Debug.Log("Loading level...");
+                currentLevel++;
+                GameManager.Instance.LevelUp();
+            }
         }
     }
 }

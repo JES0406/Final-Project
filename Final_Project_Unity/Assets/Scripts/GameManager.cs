@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime); 
         ResetPlayer();
         PopulateStage();
+        level++; // Lo pongo aquí para no entrar en bucle infinito
         ToggleCurtains();
         yield return new WaitForSeconds(waitTime);
     }
@@ -46,8 +47,12 @@ public class GameManager : MonoBehaviour
     }
     public void LevelUp()
     {
-        level++;
         ResetStage();
+    }
+
+    public int GetCurrentLevel()
+    {
+        return level;
     }
     private void ToggleCurtains()
     {
