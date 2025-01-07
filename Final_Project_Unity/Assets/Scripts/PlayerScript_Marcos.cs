@@ -12,8 +12,6 @@ public class PlayerScript_Marcos : MonoBehaviour
     public float verticalVelocity = 0.0f;
     public float gravity = 9.86f;
     public FlipperScript spriteFlipper;
-    public GameObject dustParticleSystem;
-    public GameObject dustSpawnPosition;
     public float facingDirection = -1;
 
     private PlayerInputHandler inputHandler;
@@ -31,16 +29,7 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void HandleMovement()
     {
-        bool newIsGrounded = transform.position.y <= 0;
-        if (newIsGrounded != isGrounded)
-        {
-            Debug.Log("Particles");
-            Instantiate(dustParticleSystem, dustSpawnPosition.transform);
-
-        }
-        isGrounded = newIsGrounded;
-
-
+        isGrounded = transform.position.y <= 0;
         if (!isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -59,9 +48,11 @@ public class PlayerScript_Marcos : MonoBehaviour
         if (transform.position.y <= 0)
         {
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+            isGrounded = true;
         }
+        else { isGrounded = false; }
 
-        // flipping the player
+        // flipping the player (hope it works)
         if (inputDirection.x != 0)
         {
 
@@ -73,7 +64,7 @@ public class PlayerScript_Marcos : MonoBehaviour
         }
 
         // tilting the sprite when the creature walks
-        if (isGrounded && Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
+        if (Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
         {
             spriteFlipper.Tilt();
         }
