@@ -1,7 +1,41 @@
 {
     "playerPosition": {
-            "x": 5,
-            "y": 3,
-            "z": -10
-        }
+        "x": -10,
+        "y": 3,
+        "z": -0.5
+    },
+    "enemiesData": {
+        "enemies": [
+            {
+                "id": 1,
+                "position": {
+                    "x": 10.5,
+                    "y": 3.0,
+                    "z": -7.2
+                },
+                "stats": {
+                    "health": 100.0,
+                    "attackDamage": 25.5,
+                    "attackRange": 5.0,
+                    "attackSpeed": 1.2,
+                    "attackTimer": 0.0
+                }
+            },
+            {
+                "id": 2,
+                "position": {
+                    "x": -3.4,
+                    "y": 3.0,
+                    "z": 8.1
+                },
+                "stats": {
+                    "health": 150.0,
+                    "attackDamage": 30.0,
+                    "attackRange": 3.5,
+                    "attackSpeed": 1.0,
+                    "attackTimer": 0.0
+                }
+            }
+        ]
+    }
 }

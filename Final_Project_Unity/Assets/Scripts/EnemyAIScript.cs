@@ -40,21 +40,27 @@ public class EnemyAIScript : MonoBehaviour
         }
         else if (hasTarget && target != null)
         {
-            animator.SetBool("isMoving", true);
-
-            agent.SetDestination(destination);
-            attackTimer -= Time.deltaTime;
-            if (attackTimer <= 0)
-            {
-                Attack();
-                attackTimer = 1 / attackSpeed;
-            }
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
+            HandleTargetFollowing();
+        }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
+
+    void HandleTargetFollowing()
+    {
+        animator.SetBool("isMoving", true);
+
+        agent.SetDestination(destination);
+        attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0)
+        {
+            Attack();
+            attackTimer = 1 / attackSpeed;
+        }
+    }
+
     void Attack()
     {
         if (Vector3.Distance(target.transform.position, gameObject.transform.position) < attackRange)

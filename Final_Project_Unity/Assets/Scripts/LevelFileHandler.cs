@@ -58,7 +58,7 @@ public class EnemyData
     [System.Serializable]
 public class EnemiesData
 {
-    List<EnemyData> enemies;
+    public List<EnemyData> enemies;
 }
 
     [System.Serializable]

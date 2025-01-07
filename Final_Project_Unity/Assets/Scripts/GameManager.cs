@@ -72,9 +72,30 @@ public class GameManager : MonoBehaviour
     }
     private void PopulateStage()
     {
-        // Populate the stage with objects
         Debug.Log("Populating stage...");
+        ResetEnemies();
+        PopulateEnemies();
     }
+
+    private void ResetEnemies()
+    {
+        enemyFactory.ResetEnemies();
+    }
+
+    private void PopulateEnemies()
+    {
+        if (levelData != null)
+        {
+            EnemiesData enemiesData = levelData.enemiesData;
+
+            foreach (EnemyData enemyData in enemiesData.enemies)
+            {
+                enemyFactory.AddEnemyData(enemyData);
+            }
+            enemyFactory.SpawnAllEnemies();
+        }
+    }
+
 
     public PlayerPosition GetPlayerPosition()
     {
