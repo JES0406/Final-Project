@@ -55,6 +55,9 @@ public class PlayerScript_Marcos : MonoBehaviour
 =======
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 95e2849 (dust particles)
+=======
 >>>>>>> parent of 95e2849 (dust particles)
 =======
 >>>>>>> parent of 95e2849 (dust particles)
@@ -63,6 +66,10 @@ public class PlayerScript_Marcos : MonoBehaviour
         else { isGrounded = false; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        // flipping the player (hope it works)
+>>>>>>> parent of 95e2849 (dust particles)
 =======
         // flipping the player (hope it works)
 >>>>>>> parent of 95e2849 (dust particles)
@@ -78,6 +85,10 @@ public class PlayerScript_Marcos : MonoBehaviour
 
         // tilting the sprite when the creature walks
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        if (Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
+>>>>>>> parent of 95e2849 (dust particles)
 =======
         if (Mathf.Abs(inputDirection.x) + Mathf.Abs(inputDirection.z) > 0)
 >>>>>>> parent of 95e2849 (dust particles)
