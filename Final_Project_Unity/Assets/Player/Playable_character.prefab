@@ -51,6 +51,37 @@ MonoBehaviour:
   isFlipping: 0
   tiltFrequency: 20
   maxTiltAngle: 10
+--- !u!1 &3589193551474784703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 126819377686133951}
+  m_Layer: 0
+  m_Name: DustSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &126819377686133951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589193551474784703}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5667866601523861795}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5126830824149435565
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5667866601523861795}
   - component: {fileID: 917259836583197152}
-  - component: {fileID: 4008658069691666565}
-  - component: {fileID: 6686190554984547651}
+  - component: {fileID: 5116645166601806259}
   m_Layer: 0
   m_Name: Playable_character
   m_TagString: Player
@@ -85,6 +115,7 @@ Transform:
   m_Children:
   - {fileID: 34029917492889297}
   - {fileID: 8991200147611359463}
+  - {fileID: 126819377686133951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &917259836583197152
@@ -101,16 +132,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 4
   jumpForce: 5
-  isGrounded: 0
   verticalVelocity: 0
   gravity: 9.86
   spriteFlipper: {fileID: 112777258273997187}
   facingDirection: -1
-  floorHeight: 3
   initialPosition: {x: 0, y: 0, z: 0}
-  dustParticles: {fileID: 5310372119752919302}
---- !u!136 &4008658069691666565
-CapsuleCollider:
+  dustParticles: {fileID: 4682759347540970700, guid: be24511d03ccb5c41988d9d346e5cbd9, type: 3}
+--- !u!143 &5116645166601806259
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,41 +153,17 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
+  m_Height: 0.7
   m_Radius: 0.3
-  m_Height: 0.1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.24, z: 0}
---- !u!54 &6686190554984547651
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126830824149435565}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &7288375742215258532
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,11 +305,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be24511d03ccb5c41988d9d346e5cbd9, type: 3}
---- !u!198 &5310372119752919302 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4682759347540970700, guid: be24511d03ccb5c41988d9d346e5cbd9, type: 3}
-  m_PrefabInstance: {fileID: 670679683311011274}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8991200147611359463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8469462734210309421, guid: be24511d03ccb5c41988d9d346e5cbd9, type: 3}

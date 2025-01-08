@@ -8,23 +8,24 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     [SerializeField] float movementSpeed = 4f;
     [SerializeField] float jumpForce = 5f;
-    [SerializeField] bool isGrounded = false;
+    // [SerializeField] bool isGrounded = false; // Not necessary now, as the CharacterController has a similar feature
     [SerializeField] float verticalVelocity = 0.0f;
     [SerializeField] float gravity = 9.86f;
     [SerializeField] FlipperScript spriteFlipper;
     [SerializeField] float facingDirection = -1;
-    [SerializeField] float floorHeight = 0.0f;
     [SerializeField] Vector3 initialPosition;
 
     [SerializeField] ParticleSystem dustParticles;
 
     private PlayerInputHandler inputHandler;
+    private CharacterController conn;
     
 
     // Start is called before the first frame update
     void Start()
     {
         inputHandler = PlayerInputHandler.instance;
+        conn = GetComponent<CharacterController>();
         initialPosition = transform.position;
     }
 
@@ -36,41 +37,31 @@ public class PlayerScript_Marcos : MonoBehaviour
     void HandleMovement()
     {
 
-        bool newIsGrounded = transform.position.y <= floorHeight;
 
-        if (isGrounded != newIsGrounded)
-        {
-            PlayDustParticles();
-        }
-        isGrounded = newIsGrounded;
-
-        if (!isGrounded)
+        if (!conn.isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
         }
-        else { verticalVelocity = 0.0f; }
 
-        Vector3 inputDirection = new Vector3(inputHandler.moveInput.x, 0f, inputHandler.moveInput.y);
-        if (isGrounded && inputHandler.jumpInput)
+        else if (inputHandler.jumpInput)
         {
             verticalVelocity += jumpForce;
             PlayDustParticles();
         }
-        transform.position += (movementSpeed*inputDirection
-            + Vector3.up*verticalVelocity) * Time.deltaTime;
+
+        else { verticalVelocity = 0.0f; }
+
+        Vector3 inputDirection = new Vector3(inputHandler.moveInput.x, 0f, inputHandler.moveInput.y);
+        Vector3 movementDirection = inputDirection.normalized * movementSpeed + Vector3.up * verticalVelocity;
 
 
-        if (transform.position.y <= floorHeight)
-        {
-            transform.position = new Vector3(transform.position.x, floorHeight, transform.position.z);
-            isGrounded = true;
-        }
-        else { isGrounded = false; }
+        // transform.position += (movementSpeed*inputDirection + Vector3.up*verticalVelocity) * Time.deltaTime;
+        conn.Move(movementDirection * Time.deltaTime);
 
-        // flipping the player (hope it works)
+
+        // flipping the player sprite
         if (inputDirection.x != 0)
         {
-
             if (inputDirection.x * facingDirection < 0)
             {
                 spriteFlipper.Flip();
