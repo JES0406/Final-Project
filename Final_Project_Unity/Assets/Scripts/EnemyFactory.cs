@@ -44,6 +44,15 @@ public class EnemyFactory : MonoBehaviour
 
         // Set the destination for the AI script
         aiScript.target = player;
+
+        // We add the tag "Enemy" to the enemy object
+        enemy.tag = "Enemy";
+
+        // We add a collider to the enemy object
+        SphereCollider collider = enemy.AddComponent<SphereCollider>();
+        collider.radius = 1.5f;
+        collider.isTrigger = true;
+
         enemies.Add(enemy);
 
     }

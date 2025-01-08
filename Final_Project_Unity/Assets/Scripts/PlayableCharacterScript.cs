@@ -15,11 +15,22 @@ public class PlayerScript_Marcos : MonoBehaviour
     [SerializeField] float facingDirection = -1;
     [SerializeField] float floorHeight = 0.0f;
     [SerializeField] Vector3 initialPosition;
+    [SerializeField] float attackRange = 1.0f;
+    [SerializeField] float attackDamage = 1.0f;
 
     [SerializeField] ParticleSystem dustParticles;
 
     private PlayerInputHandler inputHandler;
     
+    public float getAttackRange()
+    {
+        return attackRange;
+    }
+
+    public float getAttackDamage()
+    {
+        return attackDamage;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +102,6 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void PlayDustParticles()
     {
-        Debug.Log("Particles!");
         dustParticles.Stop();
         dustParticles.Play();
     }
