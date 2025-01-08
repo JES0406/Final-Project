@@ -16,8 +16,7 @@ public class PlayerScript_Marcos : MonoBehaviour
     [SerializeField] float floorHeight = 0.0f;
     [SerializeField] Vector3 initialPosition;
 
-    [SerializeField] GameObject dustParticles;
-    [SerializeField] GameObject dustSpawnPosition;
+    [SerializeField] ParticleSystem dustParticles;
 
     private PlayerInputHandler inputHandler;
     
@@ -36,12 +35,15 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void HandleMovement()
     {
-        bool oldIsGrounded = isGrounded;
-        isGrounded = transform.position.y <= floorHeight;
-        if (isGrounded != oldIsGrounded)
+
+        bool newIsGrounded = transform.position.y <= floorHeight;
+
+        if (isGrounded != newIsGrounded)
         {
             PlayDustParticles();
         }
+        isGrounded = newIsGrounded;
+
         if (!isGrounded)
         {
             verticalVelocity -= gravity * Time.deltaTime;
@@ -52,6 +54,7 @@ public class PlayerScript_Marcos : MonoBehaviour
         if (isGrounded && inputHandler.jumpInput)
         {
             verticalVelocity += jumpForce;
+            PlayDustParticles();
         }
         transform.position += (movementSpeed*inputDirection
             + Vector3.up*verticalVelocity) * Time.deltaTime;
@@ -88,7 +91,9 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     void PlayDustParticles()
     {
-        Instantiate(dustParticles, dustSpawnPosition.transform);
+        Debug.Log("Particles!");
+        dustParticles.Stop();
+        dustParticles.Play();
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class PointAtCharacterScript : MonoBehaviour
 {
     [SerializeField] private GameObject objectToTrack;
     // Start is called before the first frame update
