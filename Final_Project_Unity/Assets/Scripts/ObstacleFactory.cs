@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 public class ObstacleFactory : MonoBehaviour
 {
@@ -27,6 +27,11 @@ public class ObstacleFactory : MonoBehaviour
         }
 
         GameObject obstacle = Instantiate(obstaclePrefabs[prefabIndex], position, rotation);
+        obstacle.AddComponent<Rigidbody>();
+        Rigidbody rg = obstacle.GetComponent<Rigidbody>();
+        rg.useGravity = false;
+        rg.isKinematic = true;
+
 
 
         PlaceObstacle(obstacle, obstacleData.position);
