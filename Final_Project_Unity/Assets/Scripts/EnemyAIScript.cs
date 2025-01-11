@@ -73,6 +73,18 @@ public class EnemyAIScript : MonoBehaviour
         }
     }
 
+    public bool RecieveDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        Debug.Log($"Recieved {damageAmount} points of dmg, going to {health} hp");
+        if (health < 0f)
+        {
+            Debug.Log("I die");
+            return true;
+        }
+        return false;
+    }
+
     void CheckPlayerPosition()
     {
         if (target != null)
