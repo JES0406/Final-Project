@@ -4,11 +4,21 @@ using System.Collections;
 
 public class CrosshairManager : MonoBehaviour
 {
+    public static CrosshairManager instance;
     [SerializeField] private RawImage crosshairImage; // Assign the crosshair image in the Inspector
     private Camera mainCamera;
 
     private void Start()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+
         mainCamera = Camera.main;
         crosshairImage.enabled = false; // Hide the crosshair initially
     }

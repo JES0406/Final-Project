@@ -11,14 +11,9 @@ public class PlayerCombatHandler : MonoBehaviour
     private PlayerInputHandler inputHandler;
     private int? currentTargetIndex = null;
 
-    [SerializeField] private ProjectileFactory projectileFactory;
-
-    [SerializeField] private CrosshairManager crosshairManager;
-
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out EnemyAIScript enemyScript))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             enemiesInRange.Add(other.gameObject);
         }
@@ -76,14 +71,14 @@ public class PlayerCombatHandler : MonoBehaviour
             GameObject target = enemiesInRange[currentTargetIndex.Value];
             float damage = playerScript.getAttackDamage();
             bool isHoming = true; // or determine based on player state or weapon
-            bool hasExplosionEffect = false; // or based on weapon properties
+            bool hasExplosionEffect = true; // or based on weapon properties
 
-            projectileFactory.CreateProjectile(ProjectileType.Flame, target, damage, isHoming, hasExplosionEffect);
+            ProjectileFactory.instance.CreateProjectile(ProjectileType.Flame, target, damage, isHoming, hasExplosionEffect, this.gameObject);
         }
     }
     void UpdateCrosshair()
     {
-        crosshairManager.SetTarget(null);
+        CrosshairManager.instance.SetTarget(null);
 
         if (currentTargetIndex != null)
 
@@ -91,7 +86,7 @@ public class PlayerCombatHandler : MonoBehaviour
             if (enemiesInRange.Count > currentTargetIndex)
             {
                 GameObject target = enemiesInRange[currentTargetIndex.Value];
-                crosshairManager.SetTarget(target.transform);
+                CrosshairManager.instance.SetTarget(target.transform);
                 Debug.Log("Target set" + target);
             }
         }

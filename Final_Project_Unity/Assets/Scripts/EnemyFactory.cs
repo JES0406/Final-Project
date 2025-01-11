@@ -50,7 +50,8 @@ public class EnemyFactory : MonoBehaviour
 
         // We add a collider to the enemy object
         SphereCollider collider = enemy.AddComponent<SphereCollider>();
-        collider.radius = 1.5f;
+        enemy.AddComponent<Rigidbody>();
+        collider.radius = .25f;
         collider.isTrigger = true;
 
         enemies.Add(enemy);

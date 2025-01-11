@@ -8,13 +8,16 @@ public class Projectile : MonoBehaviour
     private bool isHoming = false;
     private GameObject? explosionEffect = null;
     private float speed = 10f;
+    private string senderTag;
 
-    public void Initialize(GameObject target, float damage, bool isHoming, GameObject? explosionEffect)
+    public void Initialize(GameObject target, float damage, bool isHoming, GameObject? explosionEffect, string senderTag)
     {
         this.target = target;
         this.damage = damage;
         this.isHoming = isHoming;
         this.explosionEffect = explosionEffect;
+        this.senderTag = senderTag;
+
     }
 
     private void Update()
@@ -31,7 +34,7 @@ public class Projectile : MonoBehaviour
 
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // Apply damage only if the collided object is the target
         if (collision.gameObject == target)
@@ -41,14 +44,19 @@ public class Projectile : MonoBehaviour
         }
 
         // Trigger explosion effect if applicable
-        if (explosionEffect != null)
+        if (collision.gameObject.tag != senderTag)
         {
-            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-                Destroy(explosion, 1f);
-        }
+            Debug.Log(collision.gameObject);
 
-        // Destroy the projectile upon any collision
-        Destroy(gameObject);
+            if (explosionEffect != null)
+            {
+                GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                Destroy(explosion, 1f);
+                Debug.Log("Explotó"); explosionEffect = null;
+            }
+            Destroy(this.gameObject);
+            Debug.Log("Explota");
+        }
     }
 
 }
