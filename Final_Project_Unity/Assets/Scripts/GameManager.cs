@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObstacleFactory obstacleFactory;
     [SerializeField] private PlayerScript_Marcos playerScript;
     [SerializeField] private float waitTime = 2.0f;
-    [SerializeField] private int level = 1;
+    [SerializeField] private int level = DataPersistanceManager.Instance.gameData.Level;
     private LevelData levelData;
 
 
@@ -139,5 +139,12 @@ public class GameManager : MonoBehaviour
     {
         // Select the data for the current level
         levelData = LevelDataHandler.LoadLevelData(level.ToString());
+    }
+
+    private void OnApplicationQuit()
+    {
+        GameData gameData = new GameData();
+        gameData.Level = level;
+        LevelDataHandler.SaveData(gameData);
     }
 }

@@ -24,10 +24,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync("MainScene");
     }
 
+
     public void OnLoadGameClicked()
     {
         Debug.Log("Load Game Clicked");
         DisableMenuButtons();
+        DataPersistanceManager.Instance.gameData = LevelDataHandler.LoadData();
         SceneManager.LoadSceneAsync("MainScene");
     }
 

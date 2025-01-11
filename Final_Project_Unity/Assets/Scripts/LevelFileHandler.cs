@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System;
 
-public static class LevelDataHandler
+public class LevelDataHandler 
 {
-
     public static LevelData LoadLevelData(string level)
     {
         string filePath = "Assets/Levels/Level_" + level + ".json";
@@ -20,7 +20,48 @@ public static class LevelDataHandler
             return null;
         }
     }
+
+    public static void SaveData(GameData gameData)
+    {
+        // We save the level that the player got to.
+        string filePath = "SaveData.json";
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath);
+        }
+        string json = JsonUtility.ToJson(gameData);
+
+        using (FileStream stream = new FileStream(filePath, FileMode.Create))
+        {
+            using (StreamWriter streamWriter = new StreamWriter(stream))
+            {
+                streamWriter.WriteLine(json);
+            }
+        }
+    }
+
+    public static GameData LoadData()
+    {
+        string saveDataPath = "SaveData.json";
+
+        if (File.Exists(saveDataPath))
+        {
+            string json = File.ReadAllText(saveDataPath);
+            return JsonUtility.FromJson<GameData>(json);
+        }
+        else
+        {
+            return new GameData();
+        }
+    }
 }
+
+[System.Serializable]
+public class GameData
+{
+    public int Level = 1;
+}
+
 [System.Serializable]
 public class PlayerPosition
 {
