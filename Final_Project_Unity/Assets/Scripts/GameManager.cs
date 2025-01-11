@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; // Singleton instance
     [SerializeField] private AnimationManager animationManager;
     [SerializeField] private EnemyFactory enemyFactory;
+    [SerializeField] private ObstacleFactory obstacleFactory;
     [SerializeField] private PlayerScript_Marcos playerScript;
     [SerializeField] private float waitTime = 2.0f;
     [SerializeField] private int level = 1;
@@ -74,12 +75,19 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Populating stage...");
         ResetEnemies();
+        ResetObstacles();
         PopulateEnemies();
+        PopulateObstacles();
     }
 
     private void ResetEnemies()
     {
         enemyFactory.ResetEnemies();
+    }
+
+    private void ResetObstacles()
+    {
+        obstacleFactory.ResetObstacles();
     }
 
     private void PopulateEnemies()
@@ -93,6 +101,20 @@ public class GameManager : MonoBehaviour
                 enemyFactory.AddEnemyData(enemyData);
             }
             enemyFactory.SpawnAllEnemies();
+        }
+    }
+
+    private void PopulateObstacles()
+    {
+        if (levelData != null)
+        {
+            ObstaclesData obstaclesData = levelData.obstaclesData;
+
+            foreach (ObstacleData obstacleData in obstaclesData.obstacles)
+            {
+                obstacleFactory.AddObstacleData(obstacleData);
+            }
+            obstacleFactory.SpawnAllObstacles();
         }
     }
 

@@ -61,9 +61,39 @@ public class EnemiesData
     public List<EnemyData> enemies;
 }
 
-    [System.Serializable]
+[System.Serializable]
+public class ObstaclePosition
+{
+    public float x;
+    public float y;
+    public float z;
+}
+
+public class ObstacleRotation
+{
+    public float x;
+    public float y;
+    public float z;
+}
+
+[System.Serializable]
+public class ObstacleData
+{
+    public int id;
+    public ObstaclePosition position;
+    public ObstacleRotation rotation;
+}
+
+[System.Serializable]
+public class ObstaclesData
+{
+    public List<ObstacleData> obstacles;
+}
+
+[System.Serializable]
 public class LevelData
 {
     public PlayerPosition playerPosition;
     public EnemiesData enemiesData;
+    public ObstaclesData obstaclesData;
 }
