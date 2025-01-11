@@ -1051,10 +1051,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1702612056}
     - target: {fileID: 4766971512435985977, guid: e3022dba461402d46be48ed072c1548f, type: 3}
-      propertyPath: waitTime
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766971512435985977, guid: e3022dba461402d46be48ed072c1548f, type: 3}
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1702612058}
