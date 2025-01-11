@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class EnemyAIScript : MonoBehaviour
     public float attackRange = 2f;
     public float attackSpeed = 0.5f;
     public float attackTimer = 2f;
+
+    public event Action OnEnemyDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +72,7 @@ public class EnemyAIScript : MonoBehaviour
             animator.SetBool("attack", true);
 
             // damage the target
-            // target.GetComponent<PlayerScript_Marcos>().health -= attackDamage;
+            target.GetComponent<PlayerScript>().health -= attackDamage;
         }
     }
 
@@ -80,6 +83,7 @@ public class EnemyAIScript : MonoBehaviour
         if (health < 0f)
         {
             Debug.Log("I die");
+            OnEnemyDeath();
             return true;
         }
         return false;

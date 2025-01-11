@@ -70,7 +70,7 @@ public class ObstacleFactory : MonoBehaviour
     }
 
 
-    private void PlaceObstacle(GameObject obstacle, ObstaclePosition position)
+    private void PlaceObstacle(GameObject obstacle, Position position)
     {
         obstacle.transform.position = new Vector3(position.x, position.y, position.z);
     }

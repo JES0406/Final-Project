@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AnimationManager animationManager;
     [SerializeField] private EnemyFactory enemyFactory;
     [SerializeField] private ObstacleFactory obstacleFactory;
-    [SerializeField] private PlayerScript_Marcos playerScript;
+    [SerializeField] private PlayerScript playerScript;
     [SerializeField] private float waitTime = 2.0f;
-    [SerializeField] private int level = DataPersistanceManager.Instance.gameData.Level;
+    private int level = DataPersistanceManager.Instance.gameData.Level;
     private LevelData levelData;
 
 
@@ -20,13 +21,12 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: persists between scenes
             level = 0;
             ResetStage();
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
@@ -39,8 +39,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         PopulateStage();
         ResetPlayer();
+        Debug.Log(level);
         level++; // Lo pongo aquí para no entrar en bucle infinito
+        Debug.Log(level);
         animationManager.OpenCurtains();
+        Debug.Log(playerScript.transform.position);
     }
 
     public void ResetStage()
@@ -59,9 +62,12 @@ public class GameManager : MonoBehaviour
 
     private void ResetPlayer()
     {
-        PlayerPosition playerPosition = GetPlayerPosition();
+        Debug.Log("Moving player...");
+
+        Position playerPosition = GetPlayerPosition();
         if (playerPosition != null)
         {
+            Debug.Log("Changing Position to: " + playerPosition);
             playerScript.SetInitialPosition(playerPosition.x, playerPosition.y, playerPosition.z);
         }
         else
@@ -71,7 +77,6 @@ public class GameManager : MonoBehaviour
         }
 
         playerScript.resetPosition();
-        Debug.Log("Moving player...");
     }
     private void PopulateStage()
     {
@@ -97,12 +102,19 @@ public class GameManager : MonoBehaviour
         if (levelData != null)
         {
             EnemiesData enemiesData = levelData.enemiesData;
+            Debug.Log("Enemies:" + enemiesData.enemies.Count);
+
 
             foreach (EnemyData enemyData in enemiesData.enemies)
             {
+                Debug.Log("Enemy spawned: " + enemyData);
                 enemyFactory.AddEnemyData(enemyData);
             }
             enemyFactory.SpawnAllEnemies();
+        }
+        else
+        {
+            Debug.Log("No Enemies");
         }
     }
 
@@ -121,7 +133,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public PlayerPosition GetPlayerPosition()
+    public Position GetPlayerPosition()
     {
         
         Debug.Log("LevelData: " + levelData);

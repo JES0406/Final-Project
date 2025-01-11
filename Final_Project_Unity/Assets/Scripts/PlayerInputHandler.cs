@@ -33,7 +33,6 @@ public class PlayerInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
 
         if (inputActions == null)
         {
@@ -60,7 +59,6 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         RegisterInputActions();
-        Debug.Log("PlayerInputHandler Awake: " + instance);
     }
 
 

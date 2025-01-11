@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerScript_Marcos : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
 
     [SerializeField] float movementSpeed = 4f;
@@ -16,6 +16,8 @@ public class PlayerScript_Marcos : MonoBehaviour
     [SerializeField] Vector3 initialPosition;
     [SerializeField] float attackRange = 1.0f;
     [SerializeField] float attackDamage = 1.0f;
+    [SerializeField] float attackSpeed = 1.0f;
+    [SerializeField] public float health = 1.0f;
 
     [SerializeField] ParticleSystem dustParticles;
 
@@ -105,7 +107,9 @@ public class PlayerScript_Marcos : MonoBehaviour
 
     public void resetPosition()
     {
-        transform.position = initialPosition;
+        Debug.Log("Moved to: " + initialPosition);
+        gameObject.transform.position = initialPosition;
+        Debug.Log(gameObject.transform.position + "Moved");
     }
     public void SetInitialPosition(float x, float y, float z)
     {

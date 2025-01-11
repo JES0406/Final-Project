@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerCombatHandler : MonoBehaviour
 {
     [SerializeField] private SphereCollider rangeCollider;
-    private PlayerScript_Marcos playerScript;
+    private PlayerScript playerScript;
     [SerializeField]  private List<GameObject> enemiesInRange = new List<GameObject>();
     private PlayerInputHandler inputHandler;
     private int? currentTargetIndex = null;
@@ -30,7 +30,7 @@ public class PlayerCombatHandler : MonoBehaviour
     void Start()
     {
         //We need to get the PlayerScript_Marcos component from the player object
-        playerScript = GetComponent<PlayerScript_Marcos>();
+        playerScript = GetComponent<PlayerScript>();
         rangeCollider = GetComponent<SphereCollider>();
         rangeCollider.radius = playerScript.getAttackRange();
         inputHandler = PlayerInputHandler.instance;

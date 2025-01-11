@@ -95,7 +95,7 @@ public class EnemyFactory : MonoBehaviour
         enemyController.attackTimer = stats.attackTimer;
     }
 
-    private void PlaceEnemy(EnemyAIScript enemy, EnemyPosition position)
+    private void PlaceEnemy(EnemyAIScript enemy, Position position)
     {
         enemy.transform.position = new Vector3(position.x, position.y, position.z);
     }

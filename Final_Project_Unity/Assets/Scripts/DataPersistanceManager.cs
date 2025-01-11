@@ -10,7 +10,7 @@ public class DataPersistanceManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = new DataPersistanceManager();
+            Instance = this;
         }
         else if (Instance != this)
         {

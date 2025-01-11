@@ -10,11 +10,9 @@ public class LineTrigger : MonoBehaviour
         // Debug.Log(other.tag);
         if (other.CompareTag("Player"))
         {
-
-            // Debug.Log($"{GameManager.Instance.GetCurrentLevel()} - {currentLevel}");
             if (GameManager.Instance.GetCurrentLevel() == currentLevel)
             {
-                // Debug.Log("Loading level...");
+                Debug.Log("Loading level...");
                 currentLevel++;
                 GameManager.Instance.LevelUp();
             }
