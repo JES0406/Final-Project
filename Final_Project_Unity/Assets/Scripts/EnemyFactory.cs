@@ -37,6 +37,7 @@ public class EnemyFactory : MonoBehaviour
         if (aiScript == null)
         {
             aiScript = enemy.AddComponent<EnemyAIScript>();
+            enemy.AddComponent<EnemyScript>();
         }
 
         SetStats(aiScript, stats);

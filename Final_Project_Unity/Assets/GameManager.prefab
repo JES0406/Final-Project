@@ -459,7 +459,7 @@ MonoBehaviour:
   enemyFactory: {fileID: 4570879525428130595}
   obstacleFactory: {fileID: 7914471354733028494}
   playerScript: {fileID: 0}
-  waitTime: 10
+  waitTime: 7
   level: 1
 --- !u!1 &5361935212863207672
 GameObject:
