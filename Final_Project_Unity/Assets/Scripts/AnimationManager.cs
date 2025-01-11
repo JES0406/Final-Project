@@ -22,6 +22,23 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
+    public void OpenCurtains()
+    {
+        foreach (Animator animator in curtainAnimators)
+        {
+            animator.SetBool("Open", true);
+        }
+    }
+    public void CloseCurtains()
+    {
+        foreach (Animator animator in curtainAnimators)
+        {
+            animator.SetBool("Open", false);
+        }
+    }
+
+
+
     public void AddAnimator(Animator animator)
     {
         if (!curtainAnimators.Contains(animator))

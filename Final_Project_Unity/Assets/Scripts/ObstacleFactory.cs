@@ -16,7 +16,6 @@ public class ObstacleFactory : MonoBehaviour
     {
         int prefabIndex = obstacleData.id;
         Vector3 position = new Vector3(obstacleData.position.x, obstacleData.position.y, obstacleData.position.z);
-        Debug.Log(obstacleData.rotation);
         Vector3 rotationVector = new Vector3(obstacleData.rotation.x, obstacleData.rotation.y, obstacleData.rotation.z);
         Quaternion rotation = Quaternion.Euler(rotationVector);
 

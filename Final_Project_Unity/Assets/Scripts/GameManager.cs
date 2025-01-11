@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Optional: persists between scenes
-            level = 1;
+            level = 0;
             ResetStage();
         }
         else
@@ -33,14 +33,14 @@ public class GameManager : MonoBehaviour
     public IEnumerator ResetStageRutine()
     {
         Debug.Log("Resetting stage...");
-        ToggleCurtains();
+        //ToggleCurtains();
+        animationManager.CloseCurtains();
         GetLevelData();
-        yield return new WaitForSeconds(waitTime); 
-        ResetPlayer();
-        PopulateStage();
-        level++; // Lo pongo aquí para no entrar en bucle infinito
-        ToggleCurtains();
         yield return new WaitForSeconds(waitTime);
+        PopulateStage();
+        ResetPlayer();
+        level++; // Lo pongo aquí para no entrar en bucle infinito
+        animationManager.OpenCurtains();
     }
 
     public void ResetStage()
@@ -112,7 +112,6 @@ public class GameManager : MonoBehaviour
 
             foreach (ObstacleData obstacleData in obstaclesData.obstacles)
             {
-                Debug.Log(obstacleData.rotation);
                 obstacleFactory.AddObstacleData(obstacleData);
             }
             obstacleFactory.SpawnAllObstacles();

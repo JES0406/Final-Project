@@ -1,0 +1,15 @@
+{
+    "playerPosition": {
+        "x": -5,
+        "y": 3,
+        "z": -10
+    },
+    "obstaclesData":{
+        "obstacles":[
+ 	]
+    },
+    "enemiesData": {
+        "enemies": [
+	]
+    }
+}
