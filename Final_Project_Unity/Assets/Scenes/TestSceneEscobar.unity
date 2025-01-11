@@ -122,42 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &155450594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1573889567524569927, guid: 02f5698f43bce6648aeebd79ea11c34f, type: 3}
-  m_PrefabInstance: {fileID: 800727488}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &155450599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155450594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 4f78d9d58248f914a80d30c79dccd016, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!95 &335472601 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2810731019800249884, guid: 02f5698f43bce6648aeebd79ea11c34f, type: 3}
@@ -716,11 +680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674249840856687956, guid: 338b3adf1e842384ba543269d5d2773b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13
+      value: 13.02
       objectReference: {fileID: 0}
     - target: {fileID: 4674249840856687956, guid: 338b3adf1e842384ba543269d5d2773b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32
+      value: -32.1
       objectReference: {fileID: 0}
     - target: {fileID: 4674249840856687956, guid: 338b3adf1e842384ba543269d5d2773b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -755,6 +719,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338b3adf1e842384ba543269d5d2773b, type: 3}
+--- !u!1 &748632614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748632615}
+  - component: {fileID: 748632616}
+  m_Layer: 0
+  m_Name: ObstacleFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748632615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748632614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1952979711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748632616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748632614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a538f006fff7f43b99f0a1643fdd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 8528820825029984946, guid: a05d4d94c1106004abcd87df4b8f1777, type: 3}
+  - {fileID: 490335350711660523, guid: 0a7f51b5f4ba6294a889f661114da0d3, type: 3}
+  - {fileID: 8929589423702217963, guid: e30cba1a921baf34084ac60b89ad0979, type: 3}
+  obstaclePrefab: {fileID: 357478072314647335, guid: a8acfdda1f8f6064bbf4e2fe34b27e67, type: 3}
+  obstaclesData:
+    obstacles: []
+  obstacles: []
 --- !u!1001 &800727488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,10 +826,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1573889567524569927, guid: 02f5698f43bce6648aeebd79ea11c34f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 155450599}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02f5698f43bce6648aeebd79ea11c34f, type: 3}
 --- !u!1 &852395747
 GameObject:
@@ -1047,7 +1060,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.09
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1382,6 +1395,7 @@ Transform:
   - {fileID: 449353688}
   - {fileID: 931228806}
   - {fileID: 2051024639}
+  - {fileID: 748632615}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1952979712
@@ -1398,6 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationManager: {fileID: 1535504700}
   enemyFactory: {fileID: 449353689}
+  obstacleFactory: {fileID: 748632616}
   playerScript: {fileID: 1702612058}
   waitTime: 10
   level: 1
