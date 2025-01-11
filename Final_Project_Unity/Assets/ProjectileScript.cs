@@ -17,7 +17,6 @@ public class Projectile : MonoBehaviour
         this.isHoming = isHoming;
         this.explosionEffect = explosionEffect;
         this.senderTag = senderTag;
-
     }
 
     private void Update()
@@ -37,10 +36,20 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         // Apply damage only if the collided object is the target
+
         if (collision.gameObject == target)
         {
             // Apply damage logic
             Debug.Log($"Hit target with {damage} damage.");
+            EnemyAIScript enemyAIScript = collision.gameObject.GetComponent<EnemyAIScript>();
+            if (enemyAIScript != null)
+            {
+                if (enemyAIScript.RecieveDamage(damage)) // el enemigo muere
+                {
+                    Destroy(collision.gameObject);
+                    CrosshairManager.instance.SetTarget(null);
+                };
+            }
         }
 
         // Trigger explosion effect if applicable
@@ -52,10 +61,11 @@ public class Projectile : MonoBehaviour
             {
                 GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
                 Destroy(explosion, 1f);
-                Debug.Log("Explotó"); explosionEffect = null;
+                // Debug.Log("Explotó");
+                explosionEffect = null;
             }
             Destroy(this.gameObject);
-            Debug.Log("Explota");
+            // Debug.Log("Explota");
         }
     }
 
