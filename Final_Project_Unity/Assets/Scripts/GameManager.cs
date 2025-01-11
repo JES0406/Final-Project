@@ -56,16 +56,18 @@ public class GameManager : MonoBehaviour
     {
         return level;
     }
-    private void ToggleCurtains()
-    {
-        animationManager.ToggleCurtains();
-    }
+
     private void ResetPlayer()
     {
         PlayerPosition playerPosition = GetPlayerPosition();
         if (playerPosition != null)
         {
             playerScript.SetInitialPosition(playerPosition.x, playerPosition.y, playerPosition.z);
+        }
+        else
+        {
+            Debug.Log("No player Position, reseting to 0,3,0");
+            playerScript.SetInitialPosition(0, 3, 0);
         }
 
         playerScript.resetPosition();

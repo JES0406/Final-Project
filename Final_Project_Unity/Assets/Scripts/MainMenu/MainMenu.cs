@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("New Game Clicked");
         DisableMenuButtons();
+        DataPersistanceManager.Instance.gameData = new GameData();
+        DataPersistanceManager.Instance.gameData.Level = 1;
         SceneManager.LoadSceneAsync("MainScene");
     }
 
