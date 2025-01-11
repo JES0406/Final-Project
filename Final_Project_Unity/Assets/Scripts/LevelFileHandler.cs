@@ -69,6 +69,7 @@ public class ObstaclePosition
     public float z;
 }
 
+[System.Serializable]
 public class ObstacleRotation
 {
     public float x;

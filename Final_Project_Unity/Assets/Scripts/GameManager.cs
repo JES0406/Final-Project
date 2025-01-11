@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
             foreach (ObstacleData obstacleData in obstaclesData.obstacles)
             {
+                Debug.Log(obstacleData.rotation);
                 obstacleFactory.AddObstacleData(obstacleData);
             }
             obstacleFactory.SpawnAllObstacles();
